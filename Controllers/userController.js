@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
   const findUser = await users.findOne({ email });
   // if email is exists
   if (!findUser) {
-   return res.status(400).json({ message: "email is invaild" });
+   return res.status(400).json({ message: "Email is'nt vaild" });
   }
   // if password matches
   const decryptedPassword = await bcrypt.compare(password, findUser.password);
@@ -39,6 +39,15 @@ exports.login = async (req, res) => {
   }
   // Login successfuly
   res.status(200).json({ message: "Successfully Login" });
+ } catch (error) {
+  res.status(400).json({ error });
+ }
+};
+
+exports.get = async (req, res) => {
+ try {
+  const findUser = await users.find({});
+  res.status(200).json({ message: findUser });
  } catch (error) {
   res.status(400).json({ error });
  }

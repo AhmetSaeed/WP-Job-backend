@@ -13,6 +13,14 @@ const userSchema = mongoose.Schema({
   type: String,
   required: true,
  },
+ bio: {
+  type: String,
+  required: true,
+ },
+ company: {
+  type: String,
+  required: true,
+ },
 });
 
 const userModel = mongoose.model("User", userSchema);
